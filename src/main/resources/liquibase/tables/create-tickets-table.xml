@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xci="http://www.w3.org/2001/XMLSchema-instance"
+        xci:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="create-tickets-table" author="stanislav">
+        <preConditions>
+            <not>
+                <tableExists tableName="tickets"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="tickets">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="route_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_time" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_number" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="tickets"
+                                 baseColumnNames="route_id"
+                                 constraintName="tickets_route_id_routes_id"
+                                 referencedTableName="routes"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
