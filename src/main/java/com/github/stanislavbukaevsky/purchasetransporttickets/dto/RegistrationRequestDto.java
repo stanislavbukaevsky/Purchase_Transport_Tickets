@@ -5,10 +5,14 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+/**
+ * Класс-DTO для запроса от пользователя на регистрацию
+ */
 @Data
+@Schema(description = "Объект регистрации для запроса от пользователя")
 public class RegistrationRequestDto {
     @NotEmpty(message = "Поле логина не должно быть пустым!")
-    @Size(min = 2, max = 16, message = "Имя пользователя должно содержать от 2 до 16 символов!")
+    @Size(min = 2, max = 16, message = "Логин должен содержать от 2 до 16 символов!")
     @Schema(description = "Логин пользователя при регистрации, аутентификации и авторизации")
     private String login;
     @NotEmpty(message = "Поле пароля не должно быть пустым!")

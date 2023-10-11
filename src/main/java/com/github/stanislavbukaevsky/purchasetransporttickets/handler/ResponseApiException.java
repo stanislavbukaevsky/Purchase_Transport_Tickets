@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * Класс, для построения исключений с полной информацией о них
+ */
 @Data
 public class ResponseApiException {
     private Integer code;

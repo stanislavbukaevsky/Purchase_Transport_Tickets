@@ -1,18 +1,20 @@
 package com.github.stanislavbukaevsky.purchasetransporttickets.model;
 
-import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
+/**
+ * Модель представления токенов
+ */
 @Data
-@Builder(toBuilder = true)
-public class Token {
+public class Token implements Serializable {
     private Long id;
     private String accessToken;
     private String refreshToken;
     private User user;
-    private Date issuedAt;
-    private Date expiresAtAccess;
-    private Date expiresAtRefresh;
+    private Long userId;
+    private LocalDateTime expiresAtAccess;
+    private LocalDateTime expiresAtRefresh;
 }

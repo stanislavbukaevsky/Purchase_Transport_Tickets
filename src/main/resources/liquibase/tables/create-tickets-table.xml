@@ -35,4 +35,29 @@
                                  referencedTableName="routes"
                                  referencedColumnNames="id"/>
     </changeSet>
+
+    <changeSet id="add-new-column-ticket-issuance" author="stanislav">
+        <renameColumn tableName="tickets" oldColumnName="date_time" newColumnName="date_time_departure"/>
+        <addColumn tableName="tickets">
+            <column name="date_time_ticket_issuance" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="add-two-new-columns" author="stanislav">
+        <addColumn tableName="tickets">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="ticket_status" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseTableName="tickets"
+                                 baseColumnNames="user_id"
+                                 constraintName="tickets_user_id_users_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+    </changeSet>
 </databaseChangeLog>
